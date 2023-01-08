@@ -1,0 +1,40 @@
+{% extends 'index.html' %}
+
+{% block title %}Final Teams{% endblock %}
+
+{% block topheading %}
+<h1>Final Teams</h1>
+{% endblock %}
+
+{% block content %}
+<!-- For rendering all teams -->
+<table class="teams">
+    <tr class="heading">
+        <th>S.no</th>
+        <th>Player 1</th>
+        <th>Player 2</th>
+        <th>Player 3</th>
+        <th>Player 4</th>
+        <th>Player 5</th>
+        <th>Player 6</th>
+        <th>Player 7</th>
+        <th>Player 8</th>
+        <th>Player 9</th>
+        <th>Player 10</th>
+        <th>Player 11</th>
+    </tr>
+    {% if final_team%}
+    {% for i in final_team %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        {% for j in i %}
+        <td>{{j}}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+    {% if not final_team %}
+    <h3 style="text-align: center; padding:8px 0px 5px 0px; background-color:crimson;color:white; width:100%;">No Teams</h3>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Index{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    {% block topheading %}
+    <h1>Select Teams</h1>
+    {% endblock %}
+    <div class="main">
+        <div class="container">                                                                     
+            <!--  -->
+            {% block content %}
+            <form action="team" method="GET">
+                <select name="team_a" id="">
+                    {% for i in a %}
+                    <option value={{i.team_code}}>{{i.name}} - {{i.team_code}}</option>
+                    {% endfor %}
+                </select>
+                <h2>Vs</h2>
+                <select name="team_b" id="">
+                    {% for i in a %}
+                    <option value={{i.team_code}}>{{i.name}} - {{i.team_code}}</option>
+                    {% endfor %}
+                </select>
+    
+                <!--  -->
+                <div class="fetch-btn-div">
+                    <button>Fetch</button>
+                </div>
+            </form>
+            {% endblock %}
+
+        </div>
+    </div>
+</body>
+</html>

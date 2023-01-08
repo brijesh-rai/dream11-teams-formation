@@ -1,0 +1,102 @@
+{% extends 'index.html' %}
+
+{% block title %}Teams{% endblock %}
+
+{% block topheading %}
+<h1>Team Details</h1>
+{% endblock %}
+
+{% block content %}
+<!-- Rendering Team A Details -->
+    <div class="team">
+        {% for i in team_name_a%}
+        <h2 class="team_title">{{i.name}} - {{i.team_code}}</h2>
+        {% endfor %}
+        <table>
+            <tr class="heading">
+                <th>S.No</th>
+                <th>Name</th>
+                <th>Pos.</th>
+                <th>Cred.</th>
+                <th>C</th>
+                <th>Vc</th>
+            </tr>
+            {% if players_a%}
+            {% for i in players_a %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{i.name}}</td>
+                    <td>{{i.pos}}</td>
+                    <td>{{i.credit}}</td>
+                    {% if i.cap %}
+                    <td class="green">Yes</td>
+                    {% else %}
+                    <td class="red">No</td>
+                    {% endif %}
+                    {% if i.v_cap %}
+                    <td class="green">Yes</td>
+                    {% else %}
+                    <td class="red">No</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            {% endif %}
+        </table>
+        {% if not players_a %}
+        <h3 style="text-align: center; padding:8px 0px 5px 0px; background-color:crimson;color:white;">No data found</h3>
+        {% endif %}
+    </div>
+    
+<!-- Rendering Team B Details -->
+    <div class="team">
+        {% for i in team_name_b%}
+        <h2 class="team_title">{{i.name}} - {{i.team_code}}</h2>
+        {% endfor %}
+        <table>
+            <tr class="heading">
+                <th>S.No</th>
+                <th>Name</th>
+                <th>Pos.</th>
+                <th>Cred.</th>
+                <th>C</th>
+                <th>Vc</th>
+            </tr>
+            {% if players_b%}
+            {% for i in players_b %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{i.name}}</td>
+                    <td>{{i.pos}}</td>
+                    <td>{{i.credit}}</td>
+                    {% if i.cap %}
+                    <td class="green">Yes</td>
+                    {% else %}
+                    <td class="red">No</td>
+                    {% endif %}
+                    {% if i.v_cap %}
+                    <td class="green">Yes</td>
+                    {% else %}
+                    <td class="red">No</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            {% endif %}
+        </table>
+        {% if not players_b %}
+        <h3 style="text-align: center; padding:8px 0px 5px 0px; background-color:crimson;color:white;">No data found</h3>
+        {% endif %}
+    </div>
+
+    <form action="finalteam" method="get">
+        <input type="text" name="team_a" value="{{team_a_code}}" hidden>
+        <input type="text" name="team_b" value="{{team_b_code}}" hidden>
+        
+        <div class="fetch-btn-div">
+            <label>Enter No. of Teams:</label><input type="text" name="team_size" autocomplete="off">
+            <button>Get Teams</button><br>
+            <p>Leave blank for all possible teams</p>
+
+        </div>
+    </form>
+
+{% endblock %}
